@@ -20,7 +20,7 @@ args = parser.parse_args()
 if args.mode.lower() == "localhost": 
     print("LOCALHOST MODE")
     awslambda = boto3.client('lambda', 
-        config=Config(signature_version=UNSIGNED, region='us-west-2'),
+        config=Config(signature_version=UNSIGNED),
         endpoint_url="http://localhost:80"
     )
 
@@ -82,4 +82,4 @@ for i in range(args.parallelism):
 
 for x in range(args.count):
     print("got result #%d: %s" % (x, resultqueue.get().decode('ascii')))
-    
+
